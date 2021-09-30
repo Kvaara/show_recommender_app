@@ -34,6 +34,9 @@ class CustomTheme {
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
+            headline5: const TextStyle(
+              fontSize: 27,
+            ),
           )
           .apply(
             displayColor: Colors.white,
