@@ -1,3 +1,5 @@
+// Using rendering.dart package because it's much more lightweight than the material package for doing
+// things like this.
 import 'package:flutter/rendering.dart';
 
 class Palette {

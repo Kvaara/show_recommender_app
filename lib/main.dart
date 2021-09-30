@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:show_recommender_app/features/movie_flow/movie_flow.dart';
 import 'package:show_recommender_app/theme/custom_theme.dart';
 
 void main() {
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'Show Recommender',
       darkTheme: CustomTheme.darkTheme(context),
       themeMode: ThemeMode.dark,
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MovieFlow(),
     );
   }
 }
