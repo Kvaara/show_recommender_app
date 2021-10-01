@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:show_recommender_app/core/constants.dart';
 
+import 'package:show_recommender_app/core/constants.dart';
 import 'package:show_recommender_app/core/widgets/primary_button.dart';
 
 class LandingScreen extends StatelessWidget {
@@ -32,7 +32,7 @@ class LandingScreen extends StatelessWidget {
               onPressed: nextPage,
               text: "Get started",
             ),
-            const Spacer(),
+            const SizedBox(height: kMediumSpacing),
           ],
         ),
       ),
