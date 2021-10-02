@@ -46,6 +46,12 @@ class CustomTheme {
           backgroundColor: Palette.red500,
         ),
       ),
+      sliderTheme: const SliderThemeData(
+        thumbColor: Colors.white,
+        valueIndicatorColor: Palette.red500,
+        inactiveTickMarkColor: Palette.red600,
+        activeTickMarkColor: Colors.transparent,
+      ),
     );
   }
 }
