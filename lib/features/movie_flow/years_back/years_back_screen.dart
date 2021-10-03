@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:show_recommender_app/core/constants.dart';
 import 'package:show_recommender_app/core/widgets/primary_button.dart';
+import 'package:show_recommender_app/features/movie_flow/result/result_screen.dart';
 
 class YearsBackScreen extends StatefulWidget {
   final VoidCallback nextPage;
@@ -64,7 +65,7 @@ class _RatingScreenState extends State<YearsBackScreen> {
             const Spacer(),
             PrimaryButton(
               text: "Results",
-              onPressed: widget.nextPage,
+              onPressed: () => Navigator.of(context).push(ResultScreen.route()),
             ),
             const SizedBox(height: kMediumSpacing),
           ],
