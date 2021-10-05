@@ -1,31 +1,25 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:show_recommender_app/core/constants.dart';
 import 'package:show_recommender_app/core/widgets/primary_button.dart';
+import 'package:show_recommender_app/features/movie_flow/movie_flow_controller.dart';
 import 'package:show_recommender_app/features/movie_flow/result/result_screen.dart';
 
-class YearsBackScreen extends StatefulWidget {
-  final VoidCallback nextPage;
-  final VoidCallback previousPage;
-
-  const YearsBackScreen(
-      {Key? key, required this.previousPage, required this.nextPage})
-      : super(key: key);
+class YearsBackScreen extends ConsumerWidget {
+  const YearsBackScreen({Key? key}) : super(key: key);
 
   @override
-  _RatingScreenState createState() => _RatingScreenState();
-}
-
-class _RatingScreenState extends State<YearsBackScreen> {
-  double yearsBack = 10;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
 
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(onPressed: widget.previousPage),
+        leading: BackButton(
+          onPressed:
+              ref.read(movieFlowControllerProvider.notifier).previousPage,
+        ),
       ),
       body: Center(
         child: Column(
@@ -40,7 +34,7 @@ class _RatingScreenState extends State<YearsBackScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "${yearsBack.ceil()}",
+                  "${ref.watch(movieFlowControllerProvider).yearsBack}",
                   style: theme.textTheme.headline2,
                 ),
                 Text(
@@ -53,14 +47,15 @@ class _RatingScreenState extends State<YearsBackScreen> {
             ),
             const Spacer(),
             Slider(
-              value: yearsBack,
-              onChanged: (value) => setState(() {
-                yearsBack = value;
-              }),
+              value:
+                  ref.watch(movieFlowControllerProvider).yearsBack.toDouble(),
+              onChanged: (value) => ref
+                  .read(movieFlowControllerProvider.notifier)
+                  .updateYearsBack(value.toInt()),
               min: 0,
               max: 70,
               divisions: 70,
-              label: "${yearsBack.ceil()}",
+              label: "${ref.watch(movieFlowControllerProvider).yearsBack}",
             ),
             const Spacer(),
             PrimaryButton(

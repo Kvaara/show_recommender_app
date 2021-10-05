@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:show_recommender_app/core/constants.dart';
 import 'package:show_recommender_app/core/widgets/primary_button.dart';
+import 'package:show_recommender_app/features/movie_flow/movie_flow_controller.dart';
 
-class LandingScreen extends StatelessWidget {
-  final VoidCallback previousPage;
-  final VoidCallback nextPage;
-
+class LandingScreen extends ConsumerWidget {
   const LandingScreen({
     Key? key,
-    required this.previousPage,
-    required this.nextPage,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(),
       body: Center(
@@ -29,7 +27,8 @@ class LandingScreen extends StatelessWidget {
             Image.asset("images/undraw_horror_movie.png"),
             const Spacer(),
             PrimaryButton(
-              onPressed: nextPage,
+              onPressed:
+                  ref.read(movieFlowControllerProvider.notifier).nextPage,
               text: "Get started",
             ),
             const SizedBox(height: kMediumSpacing),
