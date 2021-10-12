@@ -16,7 +16,7 @@ class MovieFlow extends ConsumerWidget {
     return PageView(
       controller: ref.watch(movieFlowControllerProvider).pageController,
       physics: const NeverScrollableScrollPhysics(),
-      children: <Widget>[
+      children: const <Widget>[
         LandingScreen(),
         GenreScreen(),
         RatingScreen(),

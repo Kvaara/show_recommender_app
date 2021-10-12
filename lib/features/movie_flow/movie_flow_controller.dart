@@ -5,6 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:show_recommender_app/features/movie_flow/genre/genre.dart';
 import 'package:show_recommender_app/features/movie_flow/movie_flow_state.dart';
 
+// Tie the UI to a StateNotifierProvider.
+// With this we can use the WidgetRef ref in the UI to to read or watch state changes through this.
 final movieFlowControllerProvider =
     StateNotifierProvider.autoDispose<MovieFlowController, MovieFlowState>(
   (ref) {
