@@ -6,6 +6,11 @@ import 'package:show_recommender_app/features/movie_flow/genre/genre_entity.dart
 import 'package:show_recommender_app/features/movie_flow/result/movie_entity.dart';
 import 'package:show_recommender_app/main.dart';
 
+final movieRepositoryProvider = Provider<MovieRepository>((ref) {
+  final dio = ref.watch(dioProvider);
+  return TMDBMovieRepository(dio: dio);
+});
+
 abstract class MovieRepository {
   Future<List<GenreEntity>> getMovieGenres();
   Future<List<MovieEntity>> getRecommendedMovies(
@@ -57,8 +62,3 @@ class TMDBMovieRepository implements MovieRepository {
     return movies;
   }
 }
-
-final movieRepositoryProvider = Provider<MovieRepository>((ref) {
-  final dio = ref.watch(dioProvider);
-  return TMDBMovieRepository(dio: dio);
-});
