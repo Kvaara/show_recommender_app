@@ -27,9 +27,9 @@ class TMDBMovieService implements MovieService {
 
   @override
   Future<List<Genre>> getGenres() async {
-    final GenreEntities = await _movieRepository.getMovieGenres();
+    final genreEntities = await _movieRepository.getMovieGenres();
     final genres =
-        GenreEntities.map((element) => Genre.fromEntity(element)).toList();
+        genreEntities.map((element) => Genre.fromEntity(element)).toList();
     return genres;
   }
 

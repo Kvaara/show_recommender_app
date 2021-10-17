@@ -28,10 +28,7 @@ class TMDBMovieRepository implements MovieRepository {
   Future<List<GenreEntity>> getMovieGenres() async {
     final response = await dio.get(
       "genre/movie/list",
-      queryParameters: {
-        "api_key": apiKey,
-        "language": "en-US",
-      },
+      queryParameters: {"api_key": apiKey, "language": "en-US"},
     );
     final results = List<Map<String, dynamic>>.from(response.data["genres"]);
     final genres =
