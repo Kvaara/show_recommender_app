@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:show_recommender_app/features/movie_flow/genre/genre.dart';
 import 'package:show_recommender_app/features/movie_flow/movie_flow_state.dart';
+import 'package:show_recommender_app/features/movie_flow/movie_service.dart';
+import 'package:show_recommender_app/features/movie_flow/result/movie.dart';
 
 // Tie the UI to a StateNotifierProvider.
 // With this we can use the WidgetRef ref in the UI to to read or watch state changes through this.
@@ -13,20 +15,28 @@ final movieFlowControllerProvider =
     return MovieFlowController(
       MovieFlowState(
         pageController: PageController(),
+        movie: AsyncValue.data(Movie.initial()),
+        genres: const AsyncValue.data([]),
       ),
+      ref.watch(movieServiceProvider),
     );
   },
 );
 
 class MovieFlowController extends StateNotifier<MovieFlowState> {
-  MovieFlowController(MovieFlowState state) : super(state);
+  final MovieService _movieService;
+
+  MovieFlowController(
+    MovieFlowState state,
+    this._movieService,
+  ) : super(state);
 
   void toggleSelected(Genre genre) {
     state = state.copyWith(
-      genres: [
-        for (final oldGenre in state.genres)
+      genres: AsyncValue.data([
+        for (final oldGenre in state.genres.data!.value)
           if (oldGenre == genre) oldGenre.toggleSelected() else oldGenre
-      ],
+      ]),
     );
   }
 
@@ -40,7 +50,8 @@ class MovieFlowController extends StateNotifier<MovieFlowState> {
 
   void nextPage() {
     if (state.pageController.page! >= 1) {
-      if (!state.genres.any((element) => element.isSelected == true)) {
+      if (!state.genres.data!.value
+          .any((element) => element.isSelected == true)) {
         return;
       }
     }
