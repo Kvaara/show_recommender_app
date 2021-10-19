@@ -6,12 +6,14 @@ class PrimaryButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String text;
   final double width;
+  final bool isLoading;
 
   const PrimaryButton({
     Key? key,
     required this.onPressed,
     this.text = "Lorem Ipsum",
     this.width = double.infinity,
+    this.isLoading = false,
   }) : super(key: key);
 
   @override
@@ -29,7 +31,15 @@ class PrimaryButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(text, style: Theme.of(context).textTheme.button),
+            if (isLoading)
+              CircularProgressIndicator(
+                color: Theme.of(context).colorScheme.onPrimary,
+              )
+            else
+              Text(
+                text,
+                style: Theme.of(context).textTheme.button,
+              ),
           ],
         ),
       ),

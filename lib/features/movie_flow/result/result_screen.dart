@@ -31,7 +31,7 @@ class ResultScreen extends ConsumerWidget {
                         Stack(
                           clipBehavior: Clip.none,
                           children: [
-                            const CoverImage(),
+                            CoverImage(movie: movie),
                             Positioned(
                               width: MediaQuery.of(context).size.width,
                               bottom: -(movieHeight / 2),
@@ -73,7 +73,8 @@ class ResultScreen extends ConsumerWidget {
 }
 
 class CoverImage extends StatelessWidget {
-  const CoverImage({Key? key}) : super(key: key);
+  final Movie movie;
+  const CoverImage({Key? key, required this.movie}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +90,11 @@ class CoverImage extends StatelessWidget {
           ],
         ).createShader(Rect.fromLTRB(0, 0, rect.width, rect.height)),
         blendMode: BlendMode.dstIn,
-        child: const Placeholder(),
+        child: Image.network(
+          movie.backdropPath ?? "",
+          fit: BoxFit.cover,
+          errorBuilder: (context, error, stackTrace) => const SizedBox(),
+        ),
       ),
     );
   }
@@ -116,7 +121,11 @@ class MovieImageDetails extends ConsumerWidget {
             SizedBox(
               width: 100,
               height: movieHeight,
-              child: const Placeholder(),
+              child: Image.network(
+                movie.posterPath ?? "",
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) => const SizedBox(),
+              ),
             ),
             const SizedBox(width: kMediumSpacing),
             Expanded(
