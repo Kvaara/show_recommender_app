@@ -1,16 +1,7 @@
 # show_recommender_app
 
-A new Flutter project.
+An application made in Dart and Flutter that recommends different TV shows, movies, cartoons and anime to the user based on their input. It has one simple user flow and doesn't require signing in or creating an account. 
 
-## Getting Started
+There are a lot of improvements that I want to make and the project isn't that close to release (as an MVP). 
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+I'll finish this after I have more time in my hands.
